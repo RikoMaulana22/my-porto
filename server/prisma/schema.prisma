@@ -1,0 +1,66 @@
+// Pelajari lebih lanjut: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql" 
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model User {
+  id       String @id @default(cuid())
+  email    String @unique
+  password String // Kita akan simpan password yang sudah di-hash
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Model untuk "Services" (Layanan)
+// Ini yang akan ditampilkan di halaman "Service"
+model Service {
+  id          String  @id @default(cuid())
+  title       String  @unique
+  description String
+  imageUrl    String? // URL untuk ikon atau gambar layanan
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Model untuk "Projects" (Portofolio)
+// Ini yang akan ditampilkan di halaman "Project"
+model Project {
+  id          String  @id @default(cuid())
+  title       String  @unique
+  description String
+  imageUrl    String
+  projectUrl  String? // Link ke live demo
+  repoUrl     String? // Link ke GitHub
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Model untuk "Booking" (Pemesanan Proyek)
+// Ini data dari form "Start Project"
+model Booking {
+  id           String        @id @default(cuid())
+  clientName   String
+  clientEmail  String
+  message      String
+  status       BookingStatus @default(PENDING) // PENDING, ACCEPTED, REJECTED
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Enum untuk status booking
+enum BookingStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
