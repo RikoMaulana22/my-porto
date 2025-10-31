@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-// TODO: Anda bisa install 'react-icons' (npm install react-icons)
+// Anda bisa install 'react-icons' (npm install react-icons)
 // import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 export default function Hero() {
@@ -46,7 +46,7 @@ export default function Hero() {
           <div className="relative z-0 order-first flex h-full min-h-64 items-center justify-center md:order-none">
             {/* Ganti dengan gambar profil Anda. Pastikan ada di folder /client/public/ */}
             <Image 
-              src="/profile-pic.jpg" // CONTOH: /client/public/profile-pic.jpg
+              src="/profile-pic.jpg" // GANTI DENGAN GAMBAR ANDA
               alt="Riko Maulana" 
               width={400} 
               height={600} 
@@ -83,7 +83,7 @@ export default function Hero() {
       {/* Tautan Bawah (sesuai referensi) */}
       <div className="absolute bottom-8 left-8 hidden md:block">
         <a href="#" className="link-hover link text-base-content/70">
-          www.dribbble.com/riko {/* Ganti link Anda */}
+          github.com/RikoMaulana22 {/* Ganti link Anda */}
         </a>
       </div>
       <div className="absolute bottom-8 right-8 hidden md:block">

@@ -15,7 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="dark"> {/* Saya tambahkan data-theme (DaisyUI) */}
+    // --- PERBAIKAN: Komentar dipindahkan ke sini ---
+    /* Saya tambahkan data-theme (DaisyUI) */
+    <html lang="en" data-theme="dark">
       <body className={inter.className}>
         {children}
       </body>

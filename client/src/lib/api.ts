@@ -1,5 +1,5 @@
 import { Service, Project, Booking } from './types';
-
+import { AuthUser } from './types';
 // 1. Ambil URL API dari .env.local
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -84,4 +84,30 @@ export const createBooking = async (
   }
 };
 
+export const adminLogin = async (credentials: {
+  email: string;
+  password: string;
+}): Promise<AuthUser> => {
+  const res = await fetch(`${API_URL}/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credentials),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.message || 'Email atau Password salah');
+  }
+
+  const user: AuthUser = await res.json();
+
+  // Pastikan yang login adalah ADMIN
+  if (user.role !== 'ADMIN') {
+    throw new Error('Akses ditolak. Hanya untuk Admin.');
+  }
+
+  return user;
+};
 // TODO: Nanti kita tambahkan fungsi API untuk Admin (login, create, update, delete)
